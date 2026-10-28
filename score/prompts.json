@@ -1,0 +1,18 @@
+[
+  {
+    "id": "failed-payment",
+    "prompt": "Write a short help article (under 150 words) explaining why a customer's payment failed because their card expired, and what they should do next."
+  },
+  {
+    "id": "release-note",
+    "prompt": "Write a short release note (under 120 words) announcing that data exports now support CSV, and that large exports are emailed to you when they're ready instead of downloading in the browser."
+  },
+  {
+    "id": "rotate-key",
+    "prompt": "Explain to a developer how to rotate an API key without downtime. Keep it under 150 words."
+  },
+  {
+    "id": "welcome-email",
+    "prompt": "Write the body of a welcome email (under 120 words) for someone who just created an account on a project-management app."
+  }
+]
