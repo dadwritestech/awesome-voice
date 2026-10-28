@@ -54,3 +54,19 @@ class SelfTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Check(unittest.TestCase):
+    def test_replacements_parsed(self):
+        v = [x for x in vs.load_voices() if x["slug"] == "gov-uk"][0]
+        self.assertEqual(v["replacements"]["utilise"], "use")
+
+    def test_check_exit_code(self):
+        import tempfile, os
+        with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False, encoding="utf-8") as fh:
+            fh.write("Please utilise our seamless portal in order to submit forms!")
+        try:
+            self.assertEqual(vs.main(["check", "--voice", "gov-uk", "--min-fit", "90", fh.name]), 1)
+            self.assertEqual(vs.main(["check", "--voice", "gov-uk", fh.name]), 0)
+        finally:
+            os.unlink(fh.name)

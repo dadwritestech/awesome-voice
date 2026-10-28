@@ -7,9 +7,21 @@ sounding like every other agent. Each file distills a brand's published style
 guide into rules an agent can follow: tone, banned phrases, sentence length,
 formatting, terminology, and before/after rewrites.
 
+> **+9 to +14 voice fit for every voice · banned phrases 27 → 0 · "!", emoji and "please" in 0 of 40 samples**
+>
+> Benchmarked on local `gemma-4-12b`, same model with and without VOICE.md:
+> 5 voices, 4 prompts, 2 samples each. [Full results](#does-it-work)
+
 Every voice is measured. This repo ships a scoring script that generates text
 with and without each VOICE.md and checks whether the output actually moves
 toward the voice. The results are below, including where it didn't.
+
+- **146 deterministic checks, no LLM needed.** `voicescore.py check` lints any
+  text against a voice: 35 measurable targets, 85 banned phrases with their
+  replacements, and 26 generic AI tells. Standard library only, no API key, and
+  it exits non-zero below a fit threshold, so it works in CI.
+- **Five voices from published sources.** Each rule cites the public page it
+  came from.
 
 ## What is VOICE.md?
 
@@ -25,6 +37,13 @@ reads.
 
 Use it for docs, error messages, release notes, onboarding emails, UI copy,
 READMEs, and commit messages.
+
+**Works with impeccable.** [impeccable](https://github.com/pbakaus/impeccable)'s
+`PRODUCT.md` records a product's voice as one fact among many, next to
+audience, purpose, and constraints, for its design commands to use.
+VOICE.md is the full writing guide behind that fact: tone rules, banned phrases,
+terminology, and rewrites. Use `PRODUCT.md` and `DESIGN.md` for the interface,
+and VOICE.md for the words.
 
 The format is specified in [FORMAT.md](FORMAT.md).
 
@@ -127,6 +146,17 @@ python score/voicescore.py report --write results/results.md
 It talks to any OpenAI-compatible server (`--base-url`, default
 `http://localhost:8080`). Generations are cached in
 `results/generations.jsonl`, so you can rescore without regenerating.
+
+### Lint your own text, no model needed
+
+```bash
+python score/voicescore.py check --voice gov-uk docs/release-notes.md
+cat draft.txt | python score/voicescore.py check --voice mailchimp -
+python score/voicescore.py check --voice stripe-docs --min-fit 90 README.md   # exit 1 below 90
+```
+
+It prints the fit score, each target's result, and every banned phrase it
+found with the replacement the voice suggests.
 
 ### What the score does and doesn't prove
 

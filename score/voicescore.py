@@ -1,7 +1,8 @@
 """voicescore: measure whether agent output moves toward a VOICE.md.
 
-Standard library only. Three subcommands:
+Standard library only. Four subcommands:
 
+  check      Lint a text file against one voice. No model needed.
   selftest   Score each VOICE.md's own Before/After examples. Every After
              should beat its Before. No model needed.
   generate   Ask a local OpenAI-compatible server to answer the prompts in
@@ -92,6 +93,16 @@ def banned_phrases(body: str) -> list[str]:
     return out
 
 
+def replacements(body: str) -> dict[str, str]:
+    """Map each banned phrase to the text after its arrow."""
+    out = {}
+    for line in section(body, "Banned phrases").splitlines():
+        m = re.match(r"\s*-\s*`([^`]+)`\s*(?:→|->)\s*(.+)", line)
+        if m:
+            out[m.group(1).strip().lower()] = m.group(2).strip()
+    return out
+
+
 def examples(body: str) -> list[dict]:
     """Return [{label, before, after}] from the Before and after section."""
     out = []
@@ -118,6 +129,7 @@ def load_voice(path: Path) -> dict:
         "meta": meta,
         "targets": meta.get("targets") or {},
         "banned": banned_phrases(body),
+        "replacements": replacements(body),
         "examples": examples(body),
         "text": text,
     }
@@ -352,6 +364,32 @@ def cmd_selftest(args) -> int:
     return 1 if failures else 0
 
 
+def cmd_check(args) -> int:
+    """Lint text against one voice. Deterministic: no model, no network."""
+    if not args.voice or len(args.voice) != 1:
+        print("check needs exactly one --voice, for example --voice gov-uk", file=sys.stderr)
+        return 2
+    voices = load_voices(args.voice)
+    if not voices:
+        print(f"No voice called {args.voice[0]!r}. Try: " +
+              ", ".join(v["slug"] for v in load_voices()), file=sys.stderr)
+        return 2
+    v = voices[0]
+    text = sys.stdin.read() if args.file == "-" else Path(args.file).read_text(encoding="utf-8")
+    r = score(text, v)
+    f = r["features"]
+    print(f"{v['name']} voice fit: {r['fit']:.0f}/100")
+    for k, val in r["scores"].items():
+        print(f"  {'ok ' if val >= 0.999 else 'fix'} {k:<17} {val:.2f}")
+    print(f"  mean sentence: {f['mean_sentence_words']:.1f} words (target {v['targets'].get('sentence_words', 'none')}), "
+          f"passive: {f['passive_rate']:.0%}, exclamations: {f['exclamations']}")
+    for phrase, n in f["banned_hits"].items():
+        print(f"  banned: {phrase!r} x{n} -> {v['replacements'].get(phrase.lower(), '(rewrite)')}")
+    for phrase, n in f["ai_tell_hits"].items():
+        print(f"  ai tell: {phrase!r} x{n}")
+    return 0 if r["fit"] >= args.min_fit else 1
+
+
 def load_cache(path: Path) -> dict:
     cache = {}
     if path.exists():
@@ -481,6 +519,9 @@ def main(argv=None) -> int:
     sub = p.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("selftest", parents=[common])
+    c = sub.add_parser("check", parents=[common], help="lint a file against one voice, no model needed")
+    c.add_argument("file", help="text or Markdown file, or - for stdin")
+    c.add_argument("--min-fit", type=float, default=0, help="exit 1 if fit is below this (for CI)")
     g = sub.add_parser("generate", parents=[common])
     g.add_argument("--prompts", default=str(ROOT / "score" / "prompts.json"))
     g.add_argument("--samples", type=int, default=2)
@@ -493,7 +534,7 @@ def main(argv=None) -> int:
 
     args = p.parse_args(argv)
     try:
-        return {"selftest": cmd_selftest, "generate": cmd_generate, "report": cmd_report}[args.cmd](args)
+        return {"selftest": cmd_selftest, "check": cmd_check, "generate": cmd_generate, "report": cmd_report}[args.cmd](args)
     except urllib.error.HTTPError as e:
         print(f"Server returned {e.code}: {e.read().decode(errors='replace')[:300]}", file=sys.stderr)
         if e.code == 401:
