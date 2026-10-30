@@ -1,0 +1,12 @@
+{
+ "repo": "awesome-voice",
+ "link": "https://github.com/dadwritestech/awesome-voice",
+ "releases": true,
+ "entries": [
+  {
+   "glob": "voices/*",
+   "kind": "voice",
+   "text": "New VOICE.md: {Name}. The brand's writing voice as one file your agent can follow, scored against the real thing."
+  }
+ ]
+}
