@@ -182,3 +182,8 @@ copying, and pass `selftest`. No voices for individual people.
 These files are unofficial. They describe public writing styles and aren't
 affiliated with or endorsed by GDS, Mailchimp, Intuit, Google, Microsoft, or
 Stripe. All trademarks belong to their owners.
+
+## License
+
+- **Voices and format** (`voices/`, `FORMAT.md`): [CC BY 4.0](LICENSE-CONTENT). Copy them anywhere; keep a credit line.
+- **Scorer and tooling:** [MIT](LICENSE).
