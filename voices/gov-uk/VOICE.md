@@ -89,6 +89,8 @@ GOV.UK publishes a list of words to avoid. Use the plain alternative.
 - Don't use "and/or". Don't use ampersands in body text.
 - Make link text describe where the link goes. Never write "click here".
 
+<!-- no-slop off -->
+
 ## Terminology
 
 | Use | Not |
@@ -101,6 +103,8 @@ GOV.UK publishes a list of words to avoid. Use the plain alternative.
 | find out | ascertain |
 | about | approximately, regarding |
 | cannot | can't |
+
+<!-- no-slop off -->
 
 ## Before and after
 

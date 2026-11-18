@@ -1,0 +1,22 @@
+[
+  {"id": "readme-cli", "prompt": "Write the README introduction and a Features section for an open-source command-line tool that finds duplicate files on disk. Under 200 words."},
+  {"id": "readme-lib", "prompt": "Write the README introduction for a small Python library that parses and validates ISO 8601 dates. Under 150 words."},
+  {"id": "release-note", "prompt": "Write release notes for version 2.4 of a note-taking app: offline sync, a faster search index, and a fix for a crash when pasting images. Under 150 words."},
+  {"id": "pr-description", "prompt": "Write a pull request description for a change that adds retry with exponential backoff to an HTTP client's upload function. Under 150 words."},
+  {"id": "commit-message", "prompt": "Write a git commit message for a change that replaces a hand-written CSV parser with Python's csv module and fixes quoted-comma handling."},
+  {"id": "docs-howto", "prompt": "Write a short how-to guide explaining how to configure environment variables for a Node.js app in development and production. Under 200 words."},
+  {"id": "api-docs", "prompt": "Write the documentation for a REST endpoint POST /v1/invoices that creates an invoice. Describe what it does, the required fields, and the errors it can return. Under 200 words."},
+  {"id": "error-message", "prompt": "Write three user-facing error messages for a photo-upload form: file too large, unsupported format, and network failure."},
+  {"id": "welcome-email", "prompt": "Write a welcome email for new users of a budgeting app. Under 150 words."},
+  {"id": "outage-update", "prompt": "Write a status-page update telling customers that a 40-minute outage of the login service has been fixed, and what caused it. Under 120 words."},
+  {"id": "blog-intro", "prompt": "Write the first two paragraphs of a blog post about why a team moved from microservices back to a monolith."},
+  {"id": "landing-hero", "prompt": "Write the headline, subheadline and three feature bullets for the landing page of a time-tracking app for freelancers."},
+  {"id": "explain-concept", "prompt": "Explain what a database index is to a junior developer. Under 150 words."},
+  {"id": "code-review", "prompt": "Write a code review comment pointing out that a function loads an entire file into memory when it could stream it. Be constructive. Under 80 words."},
+  {"id": "linkedin-post", "prompt": "Write a short LinkedIn post announcing that you just launched an open-source tool for monitoring cron jobs."},
+  {"id": "summary-meeting", "prompt": "Summarize this meeting for people who missed it: the team agreed to delay the v3 launch by two weeks because of failing payment tests, Priya owns the fix, and marketing will move the announcement to 14 March."},
+  {"id": "product-desc", "prompt": "Write a product description for a mechanical keyboard with hot-swappable switches and a wooden case. Under 120 words."},
+  {"id": "cover-letter", "prompt": "Write the opening paragraph of a cover letter for a backend engineer applying to a logistics startup."},
+  {"id": "onboarding-doc", "prompt": "Write the 'Your first week' section of an onboarding document for new engineers. Under 200 words."},
+  {"id": "faq-answer", "prompt": "Answer this FAQ for a file-sharing service: 'Can I recover a file after I delete it?' Files are kept in the trash for 30 days. Under 100 words."}
+]

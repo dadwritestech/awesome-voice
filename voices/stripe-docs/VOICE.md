@@ -88,6 +88,8 @@ These are absent from the observed pages and conflict with the patterns above.
 | customer | user (for the person paying) |
 | Dashboard | dashboard, admin panel |
 
+<!-- no-slop off -->
+
 ## Before and after
 
 ### Page opening

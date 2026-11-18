@@ -1,0 +1,962 @@
+{
+ "version": 1,
+ "evidence": "https://github.com/dadwritestech/awesome-voice/blob/main/evidence/EVIDENCE.md",
+ "grades": [
+  [
+   "A",
+   0.28
+  ],
+  [
+   "B",
+   1.02
+  ],
+  [
+   "C",
+   2.43
+  ],
+  [
+   "D",
+   4.86
+  ]
+ ],
+ "tells": [
+  {
+   "id": "delve",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:delving|delves|delved|delve)(?![\\w'-])",
+   "flags": "i",
+   "fix": "look at, cover, explain",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "tapestry",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:tapestry)(?![\\w'-])",
+   "flags": "i",
+   "fix": "mix, range, or name the parts",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "testament",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:stands as a testament|a testament to|is a testament)(?![\\w'-])",
+   "flags": "i",
+   "fix": "shows, proves",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "realm",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:realm)(?![\\w'-])",
+   "flags": "i",
+   "fix": "field, area, or cut it",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "landscape",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:landscape)(?![\\w'-])",
+   "flags": "i",
+   "fix": "field, market, or name it",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.1,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "navigate",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:navigate challenges|navigate complex|navigating the|navigate the)(?![\\w'-])",
+   "flags": "i",
+   "fix": "handle, deal with, get through",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "robust",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:robust)(?![\\w'-])",
+   "flags": "i",
+   "fix": "reliable, solid, or say what it survives",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 9.6,
+    "human_per_10k": 0.7,
+    "model_samples": 6,
+    "ratio": 14.2
+   }
+  },
+  {
+   "id": "seamless",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:seamlessly|seamless)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what doesn't break",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 9.6,
+    "human_per_10k": 0.2,
+    "model_samples": 6,
+    "ratio": 49.6
+   }
+  },
+  {
+   "id": "elevate",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:elevating|elevates|elevate)(?![\\w'-])",
+   "flags": "i",
+   "fix": "improve, or say what changes",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 3.2,
+    "human_per_10k": 0.0,
+    "model_samples": 2,
+    "ratio": null
+   }
+  },
+  {
+   "id": "unlock",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:unleashing|unlocking|unleashes|unlocks|unleash|unlock)(?![\\w'-])",
+   "flags": "i",
+   "fix": "lets you, gives you",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "empower",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:empowering|empowered|empowers|empower)(?![\\w'-])",
+   "flags": "i",
+   "fix": "lets, helps",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 1.6,
+    "human_per_10k": 0.1,
+    "model_samples": 1,
+    "ratio": 16.5
+   }
+  },
+  {
+   "id": "streamline",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:streamlining|streamlines|streamlined|streamline)(?![\\w'-])",
+   "flags": "i",
+   "fix": "simplify, speed up, or say what got shorter",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 3.2,
+    "human_per_10k": 0.3,
+    "model_samples": 2,
+    "ratio": 11.0
+   }
+  },
+  {
+   "id": "harness",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:harnessing|harnesses|harness)(?![\\w'-])",
+   "flags": "i",
+   "fix": "use",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.3,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "foster",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:fostering|fosters|foster)(?![\\w'-])",
+   "flags": "i",
+   "fix": "encourage, build",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.1,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "plays-a-role",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:plays a crucial role|play a crucial role|plays a vital role|play a vital role|plays a key role|pivotal)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what it does, or cut it",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "crucial",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:crucially|crucial)(?![\\w'-])",
+   "flags": "i",
+   "fix": "important, or say why it matters",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "vital",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:vital)(?![\\w'-])",
+   "flags": "i",
+   "fix": "important, needed",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.2,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "intricate",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:intricacies|intricate)(?![\\w'-])",
+   "flags": "i",
+   "fix": "complex, or show the detail",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 1.6,
+    "human_per_10k": 0.0,
+    "model_samples": 1,
+    "ratio": null
+   }
+  },
+  {
+   "id": "nuanced",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:nuanced|nuances)(?![\\w'-])",
+   "flags": "i",
+   "fix": "subtle, or name the difference",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "multifaceted",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:multi-faceted|multifaceted)(?![\\w'-])",
+   "flags": "i",
+   "fix": "name the parts",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.1,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "meticulous",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:meticulously|meticulous)(?![\\w'-])",
+   "flags": "i",
+   "fix": "careful, or show the care",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "vibrant",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:bustling|vibrant)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what's there",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.2,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "ever-evolving",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:rapidly evolving|ever-evolving|ever-changing|ever-growing|fast-paced)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 1.6,
+    "human_per_10k": 0.1,
+    "model_samples": 1,
+    "ratio": 16.5
+   }
+  },
+  {
+   "id": "game-changer",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:revolutionizes|game-changing|revolutionize|revolutionary|game-changer|game changer)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what changed and by how much",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "cutting-edge",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:state-of-the-art|next-generation|cutting-edge|cutting edge|next-gen)(?![\\w'-])",
+   "flags": "i",
+   "fix": "new, or name the technique",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.2,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "transformative",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:transforms the way|transform the way|transformational|transformative)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what changes",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "holistic",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:synergies|holistic|paradigm|synergy)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "embark",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:embarking|embarks|embark)(?![\\w'-])",
+   "flags": "i",
+   "fix": "start",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "journey",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:journey)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it), or name the steps",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 4.8,
+    "human_per_10k": 0.2,
+    "model_samples": 3,
+    "ratio": 24.8
+   }
+  },
+  {
+   "id": "showcase",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:showcasing|showcases|showcase)(?![\\w'-])",
+   "flags": "i",
+   "fix": "show",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.1,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "underscore",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:underscoring|underscores|underscored)(?![\\w'-])",
+   "flags": "i",
+   "fix": "show, stress",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "bolster",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:bolstering|bolsters|bolster)(?![\\w'-])",
+   "flags": "i",
+   "fix": "strengthen, support",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "boasts",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:boasting|boasts)(?![\\w'-])",
+   "flags": "i",
+   "fix": "has",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "effortless",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:effortlessly|hassle-free|effortless|with ease)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say how few steps it takes",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 4.8,
+    "human_per_10k": 0.0,
+    "model_samples": 3,
+    "ratio": null
+   }
+  },
+  {
+   "id": "powerful",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:blazingly fast|lightning-fast|lightning fast|blazing fast|powerful)(?![\\w'-])",
+   "flags": "i",
+   "fix": "give the number",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 9.6,
+    "human_per_10k": 2.5,
+    "model_samples": 5,
+    "ratio": 3.8
+   }
+  },
+  {
+   "id": "facilitate",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:facilitating|facilitates|facilitate)(?![\\w'-])",
+   "flags": "i",
+   "fix": "help, let, run",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "ensure",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:ensuring|ensures|ensure)(?![\\w'-])",
+   "flags": "i",
+   "fix": "make sure, or say how",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 19.1,
+    "human_per_10k": 2.7,
+    "model_samples": 7,
+    "ratio": 7.1
+   }
+  },
+  {
+   "id": "insights",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:actionable insights|valuable insights|invaluable)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what was learned",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "peace-of-mind",
+   "kind": "word",
+   "pattern": "(?<![\\w'-])(?:peace of mind|worry-free)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what can't go wrong",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 3.2,
+    "human_per_10k": 0.0,
+    "model_samples": 2,
+    "ratio": null
+   }
+  },
+  {
+   "id": "whether-youre",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:whether you are|whether you're)(?![\\w'-])",
+   "flags": "i",
+   "fix": "name one reader",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 9.6,
+    "human_per_10k": 0.0,
+    "model_samples": 6,
+    "ratio": null
+   }
+  },
+  {
+   "id": "look-no-further",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:look no further)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "in-todays",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:in this day and age|in the digital age|in the world of|in today's)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "rest-assured",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:rest assured)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it) and give the guarantee",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "excited",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:delighted to announce|excited to announce|pleased to announce|proud to announce|thrilled to share|excited to share|we are excited|we're thrilled|we're excited|thrilled to)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it) and say what shipped",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 11.2,
+    "human_per_10k": 0.3,
+    "model_samples": 7,
+    "ratio": 38.5
+   }
+  },
+  {
+   "id": "next-level",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:to the next level|next level)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what improves",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "at-its-core",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:at the end of the day|at the heart of|at its core)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "conclusion",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:in conclusion|to summarize|in summary|to sum up)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it), or end on the last fact",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.2,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "designed-to",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:designed to help|are designed to|is designed to|built to help|here to help)(?![\\w'-])",
+   "flags": "i",
+   "fix": "say what it does",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 3.2,
+    "human_per_10k": 0.3,
+    "model_samples": 2,
+    "ratio": 11.0
+   }
+  },
+  {
+   "id": "whole-new",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:like never before|a whole new|all-new)(?![\\w'-])",
+   "flags": "i",
+   "fix": "new, or say what's different",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "stay-tuned",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:watch this space|stay tuned)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "every-step",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:every step of the way|each step of the way)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "welcome-aboard",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:welcome to the family|welcome aboard|on board)(?![\\w'-])",
+   "flags": "i",
+   "fix": "welcome",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "dont-worry",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:don't worry|no worries|fear not)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it) and give the answer",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "best-practices",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:industry-standard|best practices)(?![\\w'-])",
+   "flags": "i",
+   "fix": "name the practice",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 4.8,
+    "human_per_10k": 0.2,
+    "model_samples": 3,
+    "ratio": 24.8
+   }
+  },
+  {
+   "id": "game-of-ease",
+   "kind": "phrase",
+   "pattern": "(?<![\\w'-])(?:say goodbye to|say hello to|no more)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it) and say what it does",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 3.2,
+    "human_per_10k": 0.1,
+    "model_samples": 1,
+    "ratio": 33.0
+   }
+  },
+  {
+   "id": "not-just",
+   "kind": "structure",
+   "pattern": "\\bnot (?:just|only|merely|simply) (?:about )?[^.!?\\n]{1,60}?[,;—–-]+\\s*(?:but|it'?s|it is)\\b",
+   "flags": "",
+   "fix": "say the one thing it is",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.2,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "isnt-its",
+   "kind": "structure",
+   "pattern": "\\b(?:it|this|that)(?:'s| is|’s) not (?:just )?(?:a|an|about)\\b[^.!?\\n]{1,60}?[.;,—–]\\s*(?:it'?s|it is|this is|it’s)\\b",
+   "flags": "",
+   "fix": "say what it is, once",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "em-dash",
+   "kind": "structure",
+   "pattern": "—",
+   "flags": "",
+   "fix": "use a comma, colon or full stop",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 22.3,
+    "human_per_10k": 0.7,
+    "model_samples": 10,
+    "ratio": 33.0
+   }
+  },
+  {
+   "id": "emoji",
+   "kind": "structure",
+   "pattern": "[🌀-🫿☀-➿⭐]",
+   "flags": "",
+   "fix": "(cut the emoji)",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 41.4,
+    "human_per_10k": 10.1,
+    "model_samples": 6,
+    "ratio": 4.1
+   }
+  },
+  {
+   "id": "bold-lead",
+   "kind": "structure",
+   "pattern": "^[ \\t]*(?:[-*+]|\\d+\\.)[ \\t]+\\*\\*[^*\\n]{2,40}\\*\\*",
+   "flags": "m",
+   "fix": "drop the bold label, or use a plain list",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 167.3,
+    "human_per_10k": 17.8,
+    "model_samples": 22,
+    "ratio": 9.4
+   }
+  },
+  {
+   "id": "exclaim",
+   "kind": "structure",
+   "pattern": "[A-Za-z)]!(?=\\s|$)",
+   "flags": "",
+   "fix": "use a full stop",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 36.7,
+    "human_per_10k": 11.6,
+    "model_samples": 10,
+    "ratio": 3.2
+   }
+  },
+  {
+   "id": "colon-reveal",
+   "kind": "structure",
+   "pattern": "(?:^|\\. )(?:The result|The answer|The best part|The catch|The secret|Here's the thing|The bottom line|The kicker)\\??:",
+   "flags": "m",
+   "fix": "(cut the setup) and state it",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "adjective-triple",
+   "kind": "structure",
+   "pattern": "\\b(?:fast|simple|secure|reliable|powerful|flexible|scalable|lightweight|easy|efficient|modern|clean|intuitive|robust),\\s(?:fast|simple|secure|reliable|powerful|flexible|scalable|lightweight|easy|efficient|modern|clean|intuitive|robust),?\\s(?:and\\s)?(?:fast|simple|secure|reliable|powerful|flexible|scalable|lightweight|easy|efficient|modern|clean|intuitive|robust)\\b",
+   "flags": "",
+   "fix": "keep the one adjective you can prove",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 3.2,
+    "human_per_10k": 0.1,
+    "model_samples": 2,
+    "ratio": 33.0
+   }
+  },
+  {
+   "id": "hope-helps",
+   "kind": "chatbot",
+   "pattern": "(?<![\\w'-])(?:hope this email finds you well|hope this finds you well|hope this helps)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "great-question",
+   "kind": "chatbot",
+   "pattern": "(?<![\\w'-])(?:great question|good question|absolutely!|certainly!|of course!)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it) and answer",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 0.0,
+    "human_per_10k": 0.0,
+    "model_samples": 0,
+    "ratio": 0.0
+   }
+  },
+  {
+   "id": "happy-coding",
+   "kind": "chatbot",
+   "pattern": "(?<![\\w'-])(?:happy budgeting|happy building|happy hacking|happy coding|here's to)(?![\\w'-])",
+   "flags": "i",
+   "fix": "(cut it)",
+   "tier": "classic",
+   "evidence": {
+    "model_per_10k": 1.6,
+    "human_per_10k": 0.0,
+    "model_samples": 1,
+    "ratio": null
+   }
+  },
+  {
+   "id": "placeholder",
+   "kind": "chatbot",
+   "pattern": "\\[(?:Your|Company|Product|App|Insert|Name|Link|Date)[^\\]\\n]{0,30}\\]",
+   "flags": "i",
+   "fix": "fill in the real value",
+   "tier": "measured",
+   "evidence": {
+    "model_per_10k": 31.9,
+    "human_per_10k": 0.9,
+    "model_samples": 6,
+    "ratio": 36.7
+   }
+  }
+ ]
+}

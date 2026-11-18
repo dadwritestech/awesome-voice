@@ -1,0 +1,13 @@
+{
+  "name": "no-slop",
+  "version": "0.1.0",
+  "description": "Find AI-writing tells in prose. Each tell is measured against pre-ChatGPT human writing. Zero dependencies.",
+  "bin": { "no-slop": "slop/cli.js" },
+  "main": "slop/slop.js",
+  "files": ["slop/slop.js", "slop/cli.js", "slop/tells.json", "README.md"],
+  "keywords": ["ai", "slop", "writing", "lint", "prose", "llm", "claude-code"],
+  "repository": { "type": "git", "url": "git+https://github.com/dadwritestech/awesome-voice.git", "directory": "plugin" },
+  "homepage": "https://dadwritestech.github.io/awesome-voice/",
+  "license": "MIT",
+  "engines": { "node": ">=16" }
+}

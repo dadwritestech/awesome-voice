@@ -1,0 +1,26 @@
+name: no-slop
+description: Fail the build when prose files read as AI-written. Checks Markdown and text files for measured AI-writing tells.
+branding:
+  icon: edit-3
+  color: gray-dark
+inputs:
+  files:
+    description: Files or globs to check, space separated.
+    default: "*.md docs/**/*.md"
+  max-grade:
+    description: Worst grade that still passes (A-F).
+    default: "C"
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        FILES: ${{ inputs.files }}
+        MAX_GRADE: ${{ inputs.max-grade }}
+      run: |
+        shopt -s globstar nullglob
+        set -f; patterns=($FILES); set +f
+        files=()
+        for p in "${patterns[@]}"; do files+=($p); done
+        if [ ${#files[@]} -eq 0 ]; then echo "no-slop: no files matched"; exit 0; fi
+        node "${{ github.action_path }}/plugin/slop/cli.js" --max-grade "$MAX_GRADE" "${files[@]}"

@@ -92,6 +92,8 @@ These break the guide's rules on hype, jargon, and vague language.
 | sign up (verb), signup (noun) | sign-up |
 | log in (verb), login (noun) | log-in |
 
+<!-- no-slop off -->
+
 ## Before and after
 
 ### Feature announcement

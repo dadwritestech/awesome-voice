@@ -94,6 +94,8 @@ and gets them there without fuss.
 | that is | i.e. |
 | sign in (verb), sign-in (noun) | log in, signin |
 
+<!-- no-slop off -->
+
 ## Before and after
 
 ### Getting data

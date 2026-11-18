@@ -41,7 +41,7 @@ targets:
 | `name` | yes | Display name of the voice. |
 | `slug` | yes | Matches the folder name. |
 | `description` | yes | One sentence. Shown in the README table. |
-| `basis` | yes | `published-guide` if the rules come from a style guide the organization publishes. `observed` if they're inferred from the organization's public pages because no guide is published. |
+| `basis` | yes | `published-guide` if the rules come from a style guide the organization publishes. `observed` if they're inferred from the organization's public pages because no guide is published. `measured` if they come from counting text, as in `evidence/`. |
 | `sources` | yes | Public URLs the rules came from. Every rule in the file must trace back to one of these. |
 | `targets` | yes | Measurable targets the scorer checks. See below. |
 

@@ -36,15 +36,17 @@ VOICES_DIR = ROOT / "voices"
 BASE_SYSTEM = "You are a helpful assistant."
 VOICE_SYSTEM = BASE_SYSTEM + "\n\nWrite everything in the voice described in this VOICE.md file.\n\n{voice}"
 
-# Generic assistant tells, scored for every voice. Not tied to any brand guide.
-AI_TELLS = [
-    "delve", "dive into", "dive deep", "seamless", "seamlessly", "leverage",
-    "robust", "elevate", "unlock", "empower", "streamline", "game-changer",
-    "cutting-edge", "it's important to note", "it is important to note",
-    "in today's", "whether you're", "look no further", "tapestry",
-    "navigate the", "rest assured", "we're excited", "we are excited",
-    "thrilled to", "embark", "harness the power",
-]
+# Generic AI-writing tells, scored for every voice. One list for the scorer and the
+# no-slop plugin: plugin/slop/tells.json, built from evidence/ by evidence/measure.py.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "plugin" / "slop"))
+import slop  # noqa: E402
+
+
+def ai_tell_hits(text: str) -> dict[str, int]:
+    hits: dict[str, int] = {}
+    for h in slop.scan(text)["hits"]:
+        hits[h["id"]] = hits.get(h["id"], 0) + 1
+    return hits
 
 
 # ---------------------------------------------------------------- parsing
@@ -238,7 +240,7 @@ def features(text: str, banned: list[str] | None = None) -> dict:
         "you_words": you,
         "first_person_words": first,
         "banned_hits": phrase_hits(text, banned or []),
-        "ai_tell_hits": phrase_hits(text, AI_TELLS),
+        "ai_tell_hits": ai_tell_hits(text),
     }
 
 

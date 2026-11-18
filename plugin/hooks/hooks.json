@@ -1,0 +1,13 @@
+{
+  "description": "After the agent writes prose, scan it for AI-writing tells and send any it finds back to the agent to fix.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PLUGIN_ROOT}/slop/hook.js\"", "timeout": 15 }
+        ]
+      }
+    ]
+  }
+}

@@ -15,11 +15,11 @@ class Parsing(unittest.TestCase):
 
     def test_every_voice_parses(self):
         voices = vs.load_voices()
-        self.assertEqual(len(voices), 5)
+        self.assertEqual(len(voices), len(list((vs.ROOT / "voices").glob("*/VOICE.md"))))
         for v in voices:
             with self.subTest(v["slug"]):
                 self.assertTrue(v["meta"].get("sources"), "needs sources")
-                self.assertIn(v["meta"].get("basis"), ("published-guide", "observed"))
+                self.assertIn(v["meta"].get("basis"), ("published-guide", "observed", "measured"))
                 self.assertGreaterEqual(len(v["banned"]), 5)
                 self.assertTrue(3 <= len(v["examples"]) <= 5)
                 self.assertTrue(v["targets"])

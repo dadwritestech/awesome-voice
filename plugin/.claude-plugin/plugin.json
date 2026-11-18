@@ -1,0 +1,9 @@
+{
+  "name": "no-slop",
+  "version": "0.1.0",
+  "description": "Catches AI-writing tells in every Markdown or text file your agent writes, and has it rewrite them before you read them. Tells are measured against pre-ChatGPT human writing.",
+  "author": { "name": "dadwritestech" },
+  "homepage": "https://github.com/dadwritestech/awesome-voice",
+  "license": "MIT",
+  "keywords": ["writing", "ai-slop", "style", "docs", "hooks"]
+}

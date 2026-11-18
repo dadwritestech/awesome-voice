@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slop score: does your writing read as AI-written?</title>
+<meta name="description" content="Paste a README, a release note or an email. See every AI-writing tell, measured against pre-ChatGPT human writing, and get a grade.">
+<meta property="og:title" content="Slop score">
+<meta property="og:description" content="Paste your text. See every AI-writing tell and get a grade from A to F.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4efe4;
+    --paper-2: #ebe4d4;
+    --ink: #1d1a16;
+    --ink-soft: #5d554a;
+    --rule: #cfc5b0;
+    --pencil: #c4321f;
+    --pencil-wash: rgba(196, 50, 31, 0.11);
+    --blue: #1f4e8c;
+    --serif: "Newsreader", Georgia, serif;
+    --mono: "Courier Prime", "Courier New", monospace;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body {
+    margin: 0; color: var(--ink); font: 400 19px/1.55 var(--serif);
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,.55), transparent 55%),
+      repeating-linear-gradient(0deg, transparent 0 31px, rgba(31,78,140,.045) 31px 32px),
+      var(--paper);
+    min-height: 100vh;
+  }
+  body::before { /* paper grain */
+    content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .35; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .35 0 0 0 0 .3 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 48px 28px 80px; position: relative; }
+  header { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+  .kicker { font: 700 13px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--pencil); margin: 0 0 14px; }
+  h1 { font-weight: 600; font-size: clamp(40px, 6vw, 72px); line-height: .98; letter-spacing: -.02em; margin: 0; max-width: 13ch; }
+  h1 em { font-weight: 400; color: var(--pencil); }
+  .lede { margin: 18px 0 0; max-width: 54ch; color: var(--ink-soft); }
+  header nav { font: 400 14px/1.6 var(--mono); text-align: right; }
+  a { color: var(--blue); text-underline-offset: 3px; }
+
+  main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; margin-top: 34px; border: 1.5px solid var(--ink); background: rgba(255,255,255,.35); box-shadow: 8px 8px 0 var(--ink); }
+  .pane { padding: 22px 26px 26px; min-height: 520px; display: flex; flex-direction: column; }
+  .pane + .pane { border-left: 1.5px solid var(--ink); position: relative; }
+  .pane h2 { font: 700 13px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; margin: 0 0 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .pane h2 span { color: var(--ink-soft); font-weight: 400; letter-spacing: .04em; text-transform: none; }
+  textarea {
+    flex: 1; width: 100%; resize: vertical; min-height: 420px; border: 0; outline: 0; background: transparent;
+    font: 400 17px/1.6 var(--serif); color: var(--ink); padding: 0;
+  }
+  textarea::placeholder { color: #9a8f7d; font-style: italic; }
+  .tools { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  button {
+    font: 700 13px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+    background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink); padding: 10px 14px;
+    box-shadow: 3px 3px 0 var(--ink); transition: transform .08s, box-shadow .08s;
+  }
+  button:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+  button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+  button.primary { background: var(--ink); color: var(--paper); }
+
+  #proof { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 17px; line-height: 1.75; }
+  .sheet { flex: 1; }
+  #proof:empty::before { content: "Your marked-up text appears here."; color: #9a8f7d; font-style: italic; }
+  mark {
+    background: var(--pencil-wash); color: inherit; padding: 0 1px; position: relative; cursor: help;
+    text-decoration: line-through; text-decoration-color: var(--pencil); text-decoration-thickness: 2px;
+    border-bottom: 2px solid var(--pencil);
+  }
+  mark sup { font: 700 10px/1 var(--mono); color: var(--pencil); text-decoration: none; display: inline-block; margin-left: 1px; }
+  mark:hover, mark.on { background: rgba(196, 50, 31, .24); }
+
+  .stamp {
+    float: right; shape-outside: circle(50%); margin: 0 0 12px 16px; width: 118px; height: 118px; border-radius: 50%;
+    border: 5px double var(--stamp, var(--pencil)); color: var(--stamp, var(--pencil));
+    display: grid; place-items: center; text-align: center; transform: rotate(-11deg);
+    font: 700 70px/1 var(--mono); opacity: .88; mix-blend-mode: multiply; background: rgba(255,255,255,.18);
+  }
+  .stamp small { display: block; font-size: 10px; letter-spacing: .2em; margin-top: -8px; }
+  .stamp.thump { animation: thump .38s cubic-bezier(.2, 1.6, .4, 1); }
+  @keyframes thump { 0% { transform: rotate(-24deg) scale(1.9); opacity: 0; } 100% { transform: rotate(-11deg) scale(1); opacity: .88; } }
+
+  .tally { display: grid; grid-template-columns: repeat(3, auto) 1fr; gap: 6px 22px; font: 400 14px/1.4 var(--mono); border-top: 1.5px solid var(--ink); padding-top: 12px; margin-top: 16px; }
+  .tally b { display: block; font-size: 22px; }
+
+  #notes { list-style: none; margin: 14px 0 0; padding: 0; font-size: 15px; columns: 2 260px; column-gap: 24px; }
+  #notes li { break-inside: avoid; padding: 6px 0 6px 12px; border-left: 2px solid var(--pencil); margin-bottom: 8px; cursor: pointer; }
+  #notes li:hover { background: var(--pencil-wash); }
+  #notes code { font: 700 12px var(--mono); color: var(--pencil); }
+  #notes q { font-style: italic; }
+  #notes .fix { color: var(--blue); }
+
+  section.after { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; margin-top: 64px; }
+  section.after h3 { font: 700 13px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--pencil); margin: 0 0 12px; }
+  section.after p { margin: 0 0 14px; }
+  pre { font: 400 14px/1.6 var(--mono); background: var(--ink); color: var(--paper); padding: 16px 18px; overflow-x: auto; margin: 0 0 14px; }
+  table { border-collapse: collapse; font: 400 14px/1.4 var(--mono); width: 100%; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); }
+  th { border-bottom: 1.5px solid var(--ink); }
+  footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--rule); font: 400 13px/1.6 var(--mono); color: var(--ink-soft); }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--paper); font: 700 13px var(--mono); padding: 10px 16px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+
+  .reveal { animation: up .6s both; }
+  .reveal:nth-child(2) { animation-delay: .08s; }
+  @keyframes up { from { opacity: 0; transform: translateY(10px); } }
+
+  @media (max-width: 860px) {
+    main { grid-template-columns: 1fr; box-shadow: 5px 5px 0 var(--ink); }
+    .pane + .pane { border-left: 0; border-top: 1.5px solid var(--ink); }
+    .pane { min-height: 0; }
+    textarea { min-height: 260px; }
+    header, section.after { grid-template-columns: 1fr; }
+    header nav { text-align: left; }
+    .stamp { width: 92px; height: 92px; font-size: 52px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="reveal">
+    <div>
+      <p class="kicker">Slop score</p>
+      <h1>Does it read as <em>AI-written?</em></h1>
+      <p class="lede">Paste a README, a release note, an email or a post. Each phrase that models write far more often than people do gets marked, with the plain fix next to it. Nothing leaves your browser.</p>
+    </div>
+    <nav>
+      <a href="https://github.com/dadwritestech/awesome-voice">GitHub</a><br>
+      <a href="https://github.com/dadwritestech/awesome-voice/blob/main/evidence/EVIDENCE.md">The evidence</a><br>
+      <a href="https://github.com/dadwritestech/awesome-voice/tree/main/plugin">Claude Code plugin</a>
+    </nav>
+  </header>
+
+  <main class="reveal">
+    <div class="pane">
+      <h2>Your text <span id="count">0 words</span></h2>
+      <textarea id="input" spellcheck="false" placeholder="Paste something here, or load the example."></textarea>
+      <div class="tools">
+        <button id="example">Load example</button>
+        <button id="clear">Clear</button>
+      </div>
+    </div>
+    <div class="pane">
+      <h2>Proof <span id="legend">hover a mark to see the fix</span></h2>
+      <div class="sheet">
+        <div class="stamp" id="stamp" hidden></div>
+        <div id="proof"></div>
+      </div>
+      <div class="tally" id="tally" hidden>
+        <div>tells<b id="t-hits">0</b></div>
+        <div>per 100 words<b id="t-rate">0</b></div>
+        <div>grade<b id="t-grade">-</b></div>
+        <div style="text-align:right;align-self:end"><button class="primary" id="share">Copy result</button></div>
+      </div>
+      <ul id="notes"></ul>
+    </div>
+  </main>
+
+  <section class="after reveal">
+    <div>
+      <h3>How the grade works</h3>
+      <p>Every rule was counted in two piles of text: answers from local models to 20 everyday writing prompts, and READMEs and release notes from 85 well-known open-source projects as they stood before June 2022, months before ChatGPT.</p>
+      <p>A phrase becomes a rule only if models write it at least three times as often as those people did, or if people almost never write it at all. The grade is tells per 100 words, cut at the human documents' own spread.</p>
+      <table id="grades"><tr><th>Grade</th><th>Tells per 100 words</th><th>Where people sit</th></tr></table>
+    </div>
+    <div>
+      <h3>Fix it where you write</h3>
+      <p>The same checker runs as a Claude Code plugin. After your agent writes a Markdown file, it reads the marks and rewrites those lines before you see them.</p>
+      <pre>/plugin marketplace add dadwritestech/awesome-voice
+/plugin install no-slop@awesome-voice</pre>
+      <p>Or check files from the command line, and fail CI on a bad grade:</p>
+      <pre>npx no-slop --max-grade B README.md</pre>
+    </div>
+  </section>
+
+  <footer>Rules and counts are open: <a href="https://github.com/dadwritestech/awesome-voice/blob/main/evidence/EVIDENCE.md">EVIDENCE.md</a>. A mark is a hint, not a verdict; quoted text, names and technical terms can stay. MIT licensed.</footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="tells.js"></script>
+<script src="slop.js"></script>
+<script>
+(function () {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const input = $('input'), proof = $('proof'), notes = $('notes'), stamp = $('stamp');
+  const STAMP_COLORS = { A: '#2d6a3e', B: '#2d6a3e', C: '#a3661a', D: '#c4321f', F: '#c4321f' };
+  const SHARE = 'https://dadwritestech.github.io/awesome-voice/';
+  const EXAMPLE = [
+    "We're thrilled to announce Inkwell 2.0! 🚀",
+    '',
+    "Whether you're a seasoned writer or just getting started, Inkwell is a powerful, intuitive notes app designed to help you capture ideas effortlessly — anywhere, anytime.",
+    '',
+    '- **Seamless Sync:** Your notes stay in sync across every device.',
+    '- **Robust Search:** Find anything in seconds with our blazing fast search.',
+    '- **Smart Tags:** Leverage AI to organize your thoughts.',
+    '',
+    "It's not just a notes app, it's your second brain. Ready to elevate your writing journey? Download it today at [Your Link] and unlock your full potential.",
+    '',
+    'Happy writing!',
+  ].join('\n');
+
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  let last = null;
+
+  // Overlapping hits ("it's not just X, it's" holds two rules) become one mark listing every rule.
+  function groups(hits) {
+    const out = [];
+    for (const h of hits) {
+      const g = out[out.length - 1];
+      if (g && h.start < g.end) { g.end = Math.max(g.end, h.end); g.hits.push(h); }
+      else out.push({ start: h.start, end: h.end, hits: [h] });
+    }
+    return out;
+  }
+
+  function render() {
+    const text = input.value;
+    const r = Slop.scan(text);
+    last = r;
+    $('count').textContent = r.words + (r.words === 1 ? ' word' : ' words');
+    if (!text.trim()) {
+      proof.innerHTML = ''; notes.innerHTML = ''; stamp.hidden = true; $('tally').hidden = true;
+      history.replaceState(null, '', location.pathname);
+      return;
+    }
+    const gs = groups(r.hits);
+    let html = '', at = 0;
+    gs.forEach((g, i) => {
+      const tip = g.hits.map((h) => `${h.id}: ${h.fix}`).join('\n');
+      html += esc(text.slice(at, g.start)) +
+        `<mark data-i="${i}" title="${esc(tip)}">${esc(text.slice(g.start, g.end))}<sup>${i + 1}</sup></mark>`;
+      at = g.end;
+    });
+    proof.innerHTML = html + esc(text.slice(at));
+    notes.innerHTML = gs.map((g, i) => `<li data-i="${i}"><code>${i + 1} ${g.hits.map((h) => h.id).join(', ')}</code><br>` +
+      `<q>${esc(text.slice(g.start, g.end).trim())}</q> <span class="fix">→ ${esc(g.hits[0].fix)}</span></li>`).join('');
+
+    const changed = stamp.hidden || stamp.dataset.g !== r.grade;
+    stamp.hidden = false; stamp.dataset.g = r.grade;
+    stamp.style.setProperty('--stamp', STAMP_COLORS[r.grade]);
+    stamp.innerHTML = `<div>${r.grade}<small>GRADE</small></div>`;
+    if (changed) { stamp.classList.remove('thump'); void stamp.offsetWidth; stamp.classList.add('thump'); }
+    $('tally').hidden = false;
+    $('t-hits').textContent = r.hits.length;
+    $('t-rate').textContent = r.per100.toFixed(2);
+    $('t-grade').textContent = r.grade;
+  }
+
+  function link(i, on) {
+    document.querySelectorAll(`[data-i="${i}"]`).forEach((el) => el.classList.toggle('on', on));
+  }
+  for (const box of [proof, notes]) {
+    box.addEventListener('mouseover', (e) => { const t = e.target.closest('[data-i]'); if (t) link(t.dataset.i, true); });
+    box.addEventListener('mouseout', (e) => { const t = e.target.closest('[data-i]'); if (t) link(t.dataset.i, false); });
+  }
+  notes.addEventListener('click', (e) => {
+    const t = e.target.closest('li'); if (!t) return;
+    const m = proof.querySelector(`mark[data-i="${t.dataset.i}"]`);
+    if (m) m.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  });
+
+  function toast(msg) {
+    const t = $('toast'); t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }
+  $('share').addEventListener('click', async () => {
+    if (!last) return;
+    const msg = `My text got a slop score of ${last.grade}: ${last.hits.length} AI-writing tells in ${last.words} words. Check yours: ${SHARE}`;
+    try { await navigator.clipboard.writeText(msg); toast('Copied. Paste it anywhere.'); }
+    catch { prompt('Copy this:', msg); }
+  });
+  $('example').addEventListener('click', () => { input.value = EXAMPLE; render(); input.focus(); });
+  $('clear').addEventListener('click', () => { input.value = ''; render(); input.focus(); });
+
+  let timer;
+  input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(render, 120); });
+
+  $('grades').insertAdjacentHTML('beforeend', Slop.grades.map(([g, v], i) =>
+    `<tr><td>${g}</td><td>up to ${v}</td><td>${['half of human docs', 'three quarters', 'nine in ten', 'almost all'][i]}</td></tr>`).join('') +
+    `<tr><td>F</td><td>over ${Slop.grades[Slop.grades.length - 1][1]}</td><td>about 1 in 100</td></tr>`);
+  render();
+})();
+</script>
+</body>
+</html>
